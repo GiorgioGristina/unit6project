@@ -21,9 +21,10 @@ function getRandomPhraseAsArray (arr) {
   let numbOfPhrases = arr.length;
   let randomIndex = Math.floor(random * numbOfPhrases);
   // get the random index number
-  return phrases[randomIndex];
+  return phrases[randomIndex].split("");
+
 };
+console.log(getRandomPhraseAsArray(phrases));
 
 
-
-console.log(phrases[randomIndex].split(""));
+//console.log(phrases[randomIndex].split(""));
