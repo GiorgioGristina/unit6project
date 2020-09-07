@@ -15,15 +15,15 @@ buttonReset.addEventListener("click", () => {
 });
 
 // function for random phrases
-function stub (arr) {
+function getRandomPhraseAsArray (arr) {
   // random number between 0 and the length of the array
-  let random = math.random();
-  let numbOfPhrases = phrases.length;
-  let randomIndex = math.floor(random * numbOfPhrases);
+  let random = Math.random();
+  let numbOfPhrases = arr.length;
+  let randomIndex = Math.floor(random * numbOfPhrases);
   // get the random index number
-  phrases[randomNumb];
+  return phrases[randomIndex];
 };
 
-let randPhrase = stub.value;
 
-console.log(randPhrase);
+
+console.log(phrases[randomIndex].split(""));
