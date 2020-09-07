@@ -4,7 +4,7 @@ let phrase = document.getElementById("phrase");
 const buttonReset = document.querySelector(".btn__reset");
 const overlay = document.getElementById("overlay");
 let missedGuess = 0;
-let ul = phrase.querySelector("ul");
+//let ul = phrase.querySelector("ul");
 //created array w phrases to guess;
 let phrases = ["blackcurrent", "book shop", "the mouline rouge", "red wine", "rolling paper"];
 
@@ -17,7 +17,13 @@ buttonReset.addEventListener("click", () => {
 // function for random phrases
 function stub (arr) {
   // random number between 0 and the length of the array
-  let randomNumb = math.floor(math.random * phrases.length)
+  let random = math.random();
+  let numbOfPhrases = phrases.length;
+  let randomIndex = math.floor(random * numbOfPhrases);
   // get the random index number
-  phrases[randomNumb.value];
+  phrases[randomNumb];
 };
+
+let randPhrase = stub.value;
+
+console.log(randPhrase);
