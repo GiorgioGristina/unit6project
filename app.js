@@ -27,8 +27,10 @@ function getRandomPhraseAsArray (arr) {
 console.log(getRandomPhraseAsArray(phrases));
 
 
+let phrasearray = getRandomPhraseAsArray(phrases);
+
 function addPhraseToDisplay (arr){
- for (i=0; i<arr.lenght; i++){
+ for (i=0; i<arr.length; i++){
    let li = document.createElement("li");
    li.appendChild.textContent(arr[i]);
    let ul = document.querySelectorAll("#phrase ul");
