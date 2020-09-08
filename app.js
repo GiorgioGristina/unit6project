@@ -27,4 +27,19 @@ function getRandomPhraseAsArray (arr) {
 console.log(getRandomPhraseAsArray(phrases));
 
 
-//console.log(phrases[randomIndex].split(""));
+function addPhraseToDisplay (arr){
+ for (i=0; i<arr.lenght; i++){
+   let li = document.createElement("li");
+   li.appendChild.textContent(arr[i]);
+   let ul = document.querySelectorAll("#phrase ul");
+  ul.appendChild(li);
+ };
+
+};
+
+
+
+
+
+
+// check letter function
