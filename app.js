@@ -35,10 +35,10 @@ function addPhraseToDisplay (arr){
    // create li element
    let li = document.createElement("li");
    // add letter and space to the li element
-   li.appendChild.textContent(arr[i]);
+   li.appendChild.innerText(arr[i]);
    // select ul in div with id phase
    let ul = document.querySelectorAll("#phrase ul");
-   //append the li to 
+   //append the li to
   ul.appendChild(li);
 
  };
