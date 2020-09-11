@@ -39,7 +39,12 @@ function addPhraseToDisplay (arr){
    // select ul in div with id phase
    let ul = document.querySelectorAll("#phrase ul");
    //append the li to
-  ul.appendChild(li);
+    ul.appendChild(li);
+   // conditional to add class "letter" if if the li element is a letter
+   if (li === "letter"){
+     li.className = "letter";
+     
+   }
 
  };
 
