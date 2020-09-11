@@ -35,18 +35,21 @@ function addPhraseToDisplay (arr){
    // create li element
    let li = document.createElement("li");
    // add letter and space to the li element
-   li.textContent = arr[i] ;
+   li.innerText = arr[i] ;
    // select ul in div with id phase
-   let ul = document.querySelectorAll("#phrase ul");
+   let ul = document.querySelector("#phrase ul");
    //append the li to
     ul.appendChild(li);
    // conditional to add class "letter" if if the li element is a letter
    if (li != " "){
-   li.className = "letter";
+     li.className = "letter";
    } else {
-   li.className = "space";
+     li.className = "space";
    }
  };
+};
+
+addPhraseToDisplay(phrasearray);
 
 
 
