@@ -52,6 +52,14 @@ function addPhraseToDisplay (arr){
 addPhraseToDisplay(phrasearray);
 
 
+//checkLetter
+// event listener for when the user press the button on the keyborad
+let qwertybutton = document.querySelectorAll("#qwerty button");
+
+qwertybutton.addEventListener ("click", () =>{
+
+
+});
 
 
 
