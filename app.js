@@ -50,8 +50,6 @@ function addPhraseToDisplay (arr){
 };
 
 addPhraseToDisplay(phrasearray);
-
-
 //checkLetter
 // event listener for when the user press the button on the keyborad
 let qwertybutton = document.querySelectorAll("#qwerty button");
@@ -61,12 +59,11 @@ qwertybutton.addEventListener ("click", () =>{
   function checkLetter (button){
     // variable the select li element with class checkLetter
     let liLetter = document.querySelector("li .letter");
-
     //loop to check letter in the listner
     for (i = 0, i < liLetter.lenght, i++  ){
       // conditional to compare if the button press its match a letter of the phrases
       if (liLetter === button){
-
+        liLetter.className = "show";
       };
 
     };
