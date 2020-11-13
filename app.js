@@ -6,7 +6,7 @@ const overlay = document.getElementById("overlay");
 let missedGuess = 0;
 //let ul = phrase.querySelector("ul");
 //created array w phrases to guess;
-let phrases = ["blackcurrent", "book shop", "the mouline rouge", "red wine", "rolling paper"];
+let phrases = ["black current", "book shop", "the mouline rouge", "red wine", "rolling paper"];
 
 //add event listner to start the Game, so this will remove the-
 //overlay when the reset button has been clicked
@@ -41,50 +41,41 @@ function addPhraseToDisplay (arr){
    //append the li to
     ul.appendChild(li);
    // conditional to add class "letter" if if the li element is a letter
-   if (li != " "){
+   if (arr[i] != " "){
      li.className = "letter";
    } else {
      li.className = "space";
    }
- };
+  };
 };
 
 addPhraseToDisplay(phrasearray);
-//checkLetter
-// event listener for when the user press the button on the keyborad
-//let qwertybutton = document.querySelectorAll("#qwerty button");
 
-//qwertybutton.forEach(button, () => button.addEventListener('click'), (e) => {
-// function to checkLetter
-  //function checkLetter (button){
-    // variable the select li element with class checkLetter
-    //let liLetter = document.querySelector("li .letter");
-    //loop to check letter in the listner
-    //for (i = 0; i < liLetter.length; i++  ){
-      // conditional to compare if the button press its match a letter of the phrases
-      //if (liLetter === button){
-      //  liLetter.className = "show";
-      //};
+//checkletter function
 
-    //};
+function checkLetter(button) {
+  console.log("check letter called", button)
+  // variable the select li element with class checkLetter
+  let liLetter = document.querySelectorAll("li");
+  //loop to check letter in the listner
+  for (i = 0; i < liLetter.length; i++) {
+    // conditional to compare if the button press its match a letter of the phrases
+    if (liLetter[i].innerText === button.innerText) {
+      liLetter[i].className = "letter show";
+      button.disabled= true; // change button status after being pressed
+    } else {
+      missedGuess = +1;
+      let ol = document.querySelector("#scoreboard .tries");
+      ol.disabled= true;
 
-  //};
 
-//});
-
-qwertybutton.forEach(button, () => button.addEventListener('click'), (e) => {
-  function checkLetter(button) {
-    // variable the select li element with class checkLetter
-    let liLetter = document.querySelector("li .letter");
-    //loop to check letter in the listner
-    for (i = 0; i < liLetter.length; i++) {
-      // conditional to compare if the button press its match a letter of the phrases
-      if (liLetter === button) {
-        liLetter.className = "show";
-      };
-    };
-  };
-});
+    }
+  }
+}
+let qwerty_buttons = document.querySelectorAll("#qwerty button");
+qwerty_buttons.forEach((button) => button.addEventListener('click', (e) => {
+  checkLetter(button)
+}));
 
 
 
