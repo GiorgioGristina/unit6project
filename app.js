@@ -66,8 +66,7 @@ function checkLetter(button) {
     } else {
       missedGuess = +1;
       let ol = document.querySelector("#scoreboard .tries");
-      ol.disabled= true;
-
+      ol.remove();
 
     }
   }
