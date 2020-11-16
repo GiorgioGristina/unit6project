@@ -54,7 +54,7 @@ addPhraseToDisplay(phrasearray);
 //checkletter function
 
 function checkLetter(button) {
-  console.log("check letter called", button)
+
   // variable the select li element with class checkLetter
   let liLetter = document.querySelectorAll("li");
   //loop to check letter in the listner
@@ -77,7 +77,55 @@ qwerty_buttons.forEach((button) => button.addEventListener('click', (e) => {
 }));
 
 
+ //NEW CODE TRY
+function checkLetter(button){
+  const liLetter= phrase.querySelectorAll("li");
+  let letterFound = false;
+  liLetter.forEach(li => {
+    if (li.textcontent === button){
+      letterFound = true;
+    }
+
+  });
+  return letterFound;
+}
+//listener to keyboard
+ qwerty.addEventListener('click', e => {
+   // if the target is a button
+   if (e.target.tagName === 'BUTTON') {
+    const button = e.target;
+    // change the class="chosen"
+    button.className = 'chosen';
+    // disabble the button
+    button.disabled = true;
+    const match = checkLetter(button.textContent);
+  }
+ });
 
 
 
 // check letter function
+
+
+//function checkLetter(button) {
+//  console.log("check letter called", button)
+  // variable the select li element with class checkLetter
+//  let liLetter = document.querySelectorAll("li");
+  //loop to check letter in the listner
+//  for (i = 0; i < liLetter.length; i++) {
+    // conditional to compare if the button press its match a letter of the phrases
+//    if (liLetter[i].innerText === button.innerText) {
+//      liLetter[i].className = "letter show";
+//      button.disabled= true; // change button status after being pressed
+//    } else {
+//      missedGuess = +1;
+//      let ol = document.querySelector("#scoreboard .tries");
+//      ol.remove();
+
+//    }
+//  }
+//}
+//let qwerty_buttons = document.querySelectorAll("#qwerty button");
+//qwerty_buttons.forEach((button) => button.addEventListener('click', (e) => {
+//  checkLetter(button)
+//}));
