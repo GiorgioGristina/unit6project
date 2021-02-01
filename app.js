@@ -1,4 +1,4 @@
-// declaring variables
+// declaring variable
 let qwerty = document.getElementById("qwerty");
 let phrase = document.getElementById("phrase");
 const buttonReset = document.querySelector(".btn__reset");
