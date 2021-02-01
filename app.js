@@ -1,131 +1,93 @@
-// declaring variabl
-let qwerty = document.getElementById("qwerty");
-let phrase = document.getElementById("phrase");
+const qwerty = document.querySelector("#qwerty");
+const phrase = document.querySelector("#phrase");
 const buttonReset = document.querySelector(".btn__reset");
-const overlay = document.getElementById("overlay");
 let missedGuess = 0;
-//let ul = phrase.querySelector("ul");
-//created array w phrases to guess;
-let phrases = ["black current", "book shop", "the mouline rouge", "red wine", "rolling paper"];
+const overlayDiv = document.querySelector("#overlay");
+const ul = document.querySelector("ul");
+const phrases = ["black current","book shop", "the mouline rouge", "red wine", "rolling paper"];
+const hearts = document.querySelectorAll("img");
 
-//add event listner to start the Game, so this will remove the-
-//overlay when the reset button has been clicked
-buttonReset.addEventListener("click", () => {
-  overlay.style.display = "none";
-});
-
-// function for random phrases
-function getRandomPhraseAsArray (arr) {
-  // random number between 0 and the length of the array
-  let random = Math.random();
-  let numbOfPhrases = arr.length;
-  let randomIndex = Math.floor(random * numbOfPhrases);
-  // get the random index number
-  return phrases[randomIndex].split("");
-
-};
-console.log(getRandomPhraseAsArray(phrases));
+buttonReset.addEventListener("click", ()=>{
+    overlayDiv.style.display = "none";
+})
 
 
-let phrasearray = getRandomPhraseAsArray(phrases);
+function getRandomPhraseAsArray (arr){
+    const randomNumber = Math.floor(Math.random() * arr.length);
+    const randomPhrase = arr[randomNumber].split("");
+    return randomPhrase;
 
-function addPhraseToDisplay (arr){
-
- for (i=0; i<arr.length; i++){
-   // create li element
-   let li = document.createElement("li");
-   // add letter and space to the li element
-   li.innerText = arr[i] ;
-   // select ul in div with id phase
-   let ul = document.querySelector("#phrase ul");
-   //append the li to
-    ul.appendChild(li);
-   // conditional to add class "letter" if if the li element is a letter
-   if (arr[i] != " "){
-     li.className = "letter";
-   } else {
-     li.className = "space";
-   }
-  };
-};
-
-addPhraseToDisplay(phrasearray);
-
-//checkletter function
-
-function checkLetter(button) {
-
-  // variable the select li element with class checkLetter
-  let liLetter = document.querySelectorAll("li");
-  //loop to check letter in the listner
-  for (i = 0; i < liLetter.length; i++) {
-    // conditional to compare if the button press its match a letter of the phrases
-    if (liLetter[i].innerText === button.innerText) {
-      liLetter[i].className = "letter show";
-      button.disabled= true; // change button status after being pressed
-    } else {
-      missedGuess = +1;
-      let ol = document.querySelector("#scoreboard .tries");
-      ol.remove();
-
-    }
-  }
-}
-let qwerty_buttons = document.querySelectorAll("#qwerty button");
-qwerty_buttons.forEach((button) => button.addEventListener('click', (e) => {
-  checkLetter(button)
-}));
-
-
- //NEW CODE TRY
-function checkLetter(button){
-  const liLetter= phrase.querySelectorAll("li");
-  let letterFound = false;
-  liLetter.forEach(li => {
-    if (li.textcontent === button){
-      letterFound = true;
+     
     }
 
-  });
-  return letterFound;
+const phraseArray = getRandomPhraseAsArray(phrases);
+
+
+function addPhraseToDisplay(arr) {
+    for (let i = 0; i < arr.length; i++) {
+        const li = document.createElement("li");
+        li.textContent = arr[i];
+        
+        if (li.textContent !== " ") {
+            li.className = "letter";
+            
+        } else {
+            li.className = "space";
+        }
+        ul.appendChild(li);
+        
+    }
 }
-//listener to keyboard
- qwerty.addEventListener('click', e => {
-   // if the target is a button
-   if (e.target.tagName === 'BUTTON') {
-    const button = e.target;
-    // change the class="chosen"
-    button.className = 'chosen';
-    // disabble the button
-    button.disabled = true;
-    const match = checkLetter(button.textContent);
-  }
- });
+
+addPhraseToDisplay(phraseArray); 
+
+function checkLetter(letter) {
+    const letters = document.querySelectorAll(".letter");
+    let match = null;
+    for (let i = 0; i < letters.length; i++) {
+        if (letter.textContent === letters[i].textContent) {
+            letters[i].classList.add("show");
+            match += letter.textContent;
+
+        }
+        
+    }
+    return match;
+}
 
 
 
-// check letter function
 
+qwerty.addEventListener("click", (e)=>{
+    const element = e.target;
+    if (element.tagName === "BUTTON") {
+        element.className="chosen";
+        element.disabled= true;
+        const letterFound = checkLetter(element);
+        if (letterFound === null) {
+            hearts[hearts.length -1 -missedGuess].src="images/lostHeart.png"
+            missedGuess += 1;
 
-//function checkLetter(button) {
-//  console.log("check letter called", button)
-  // variable the select li element with class checkLetter
-//  let liLetter = document.querySelectorAll("li");
-  //loop to check letter in the listner
-//  for (i = 0; i < liLetter.length; i++) {
-    // conditional to compare if the button press its match a letter of the phrases
-//    if (liLetter[i].innerText === button.innerText) {
-//      liLetter[i].className = "letter show";
-//      button.disabled= true; // change button status after being pressed
-//    } else {
-//      missedGuess = +1;
-//      let ol = document.querySelector("#scoreboard .tries");
-//      ol.remove();
+            
+        }
+        
+    }
+    checkwin();
+})
 
-//    }
-//  }
-//}
-//let qwerty_buttons = document.querySelectorAll("#qwerty button");
-//qwerty_buttons.forEach((button) => button.addEventListener('click', (e) => {
-//  checkLetter(button)
-//}));
+function checkwin (){
+    const numberLetterClass = document.querySelectorAll(".letter")
+    const numbershowClass = document.querySelectorAll(".show")
+
+    if (numberLetterClass.length === numbershowClass.length ) {
+        overlayDiv.style.display = "flex";
+        overlayDiv.className = "win";
+        overlayDiv.firstElementChild.innerHTML="congratukation you won!!!";
+
+        
+    } else if (missedGuess >= 5){
+        overlayDiv.style.display = "flex";
+        overlayDiv.className = "lose";
+        overlayDiv.firstElementChild.innerHTML="looser";
+    }
+}
